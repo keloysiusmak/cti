@@ -1,3 +1,7 @@
+This repository builds on the CTI Repository by adding the list of techiques into a corresponding json.
+
+***
+
 # cti
 The Cyber Threat Intelligence Repository of ATT&amp;CK and CAPEC catalogs expressed in STIX 2.0 JSON. See [USAGE](USAGE.md) or [USAGE-CAPEC](USAGE-CAPEC.md) for information on using this content with [python-stix2](https://github.com/oasis-open/cti-python-stix2).
 
