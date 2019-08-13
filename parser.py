@@ -1,5 +1,5 @@
-
 ATTACK_PATHS = ['/enterprise-attack']
+JSON_OUTPUT_PATHS = ['enterprise-attack/enterprise-techniques.json']
 
 from bs4 import BeautifulSoup
 from requests import get
@@ -10,7 +10,7 @@ import json
 from tqdm import tqdm
 cwd = os.getcwd()
 files = reduce(lambda x,y: x+y, map(lambda path: glob.glob(cwd + path + '/*.json'), ATTACK_PATHS))
-for file in files:
+for (index, file) in enumerate(files):
 	with open(file) as json_file:
 		json_data = json.load(json_file)
 		urls = []
@@ -50,5 +50,5 @@ for file in files:
 			# Strip any unnecessary whitespace
 			technique = { k: unicode.strip(v) if (k not in ['references', 'mitigations', 'examples']) else v for k, v in technique.items() }
 			techniques += [technique]
-		f = open("techniques.json", "w+")
+		f = open(JSON_OUTPUT_PATHS[index], "w+")
 		json.dump(techniques, f)
