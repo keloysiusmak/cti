@@ -9,7 +9,7 @@ import os
 import json
 from tqdm import tqdm
 cwd = os.getcwd()
-files = reduce(lambda x,y: x+y, map(lambda path: glob.glob(cwd + path + '/*.json'), ATTACK_PATHS))
+files = reduce(lambda x,y: x+y, map(lambda path: glob.glob(cwd + path + '/*-attack.json'), ATTACK_PATHS))
 for (index, file) in enumerate(files):
 	with open(file) as json_file:
 		json_data = json.load(json_file)
@@ -51,4 +51,5 @@ for (index, file) in enumerate(files):
 			technique = { k: unicode.strip(v) if (k not in ['references', 'mitigations', 'examples']) else v for k, v in technique.items() }
 			techniques += [technique]
 		f = open(JSON_OUTPUT_PATHS[index], "w+")
-		json.dump(techniques, f)
+		json.dump(techniques, f, sort_keys=True, indent=4)
+
